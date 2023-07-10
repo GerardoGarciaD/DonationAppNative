@@ -2,7 +2,7 @@ const {StyleSheet} = require('react-native');
 
 const globalStyles = StyleSheet.create({
   backgroundWhite: {
-    backgroundColor: 'red',
+    backgroundColor: '#fff',
   },
   heighFull: {
     height: '100%',

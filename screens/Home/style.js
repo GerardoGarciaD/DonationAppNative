@@ -52,6 +52,10 @@ const styles = StyleSheet.create({
   categoryItem: {
     marginRight: horizontalScale(8),
   },
+  donationItemsContainer: {
+    marginTop: verticalScale(20),
+    marginHorizontal: horizontalScale(24),
+  },
 });
 
 export default styles;

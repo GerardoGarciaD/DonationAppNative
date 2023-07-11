@@ -9,10 +9,14 @@ import Search from '../../components/Search/Search';
 import Tab from '../../components/Tab/Tab';
 import {updateSelectedCategoryId} from '../../redux/reducers/Categories';
 import SingleDonationItem from '../../components/SingleDonationItem/SingleDonationItem';
+import {updateSelectedDonationId} from '../../redux/reducers/Donations';
+import {useNavigation} from '@react-navigation/native';
+import {Routes} from '../../Navigation/Routes';
 const Home = () => {
   const user = useSelector(state => state.user);
   const categories = useSelector(state => state.categories);
   const donations = useSelector(state => state.donations);
+  const navigation = useNavigation();
 
   const [categoryPage, setCategoryPage] = useState(1);
   const [categoryList, setCategoryList] = useState([]);
@@ -122,7 +126,8 @@ const Home = () => {
               <View key={value.donationItemId} style={style.singleDonationItem}>
                 <SingleDonationItem
                   onPress={selectedDonationId => {
-                    console.log(selectedDonationId);
+                    disptach(updateSelectedDonationId(selectedDonationId));
+                    navigation.navigate(Routes.SingleDonationItem as String);
                   }}
                   donationItemId={value.donationItemId}
                   uri={value.image}

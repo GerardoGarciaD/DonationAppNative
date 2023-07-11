@@ -1,14 +1,15 @@
 import {faSearch} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import React, {FC, useRef, useState} from 'react';
-import {Pressable, Text, TextInput, View} from 'react-native';
+import {Pressable, TextInput} from 'react-native';
 import style from './style';
 
 type Props = {
   onSearch: (text: string) => void;
+  placeHolder?: string;
 };
 
-const Search: FC<Props> = ({onSearch}) => {
+const Search: FC<Props> = ({onSearch, placeHolder = 'Search'}) => {
   const [search, setSearch] = useState('');
 
   const textInputRef = useRef(null);
@@ -29,6 +30,7 @@ const Search: FC<Props> = ({onSearch}) => {
         onChangeText={value => handleSearch(value)}
         ref={textInputRef}
         style={style.searchInput}
+        placeholder={placeHolder}
       />
     </Pressable>
   );

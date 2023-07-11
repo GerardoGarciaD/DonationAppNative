@@ -7,17 +7,17 @@ import Header from '../../components/Header/Header';
 import Tab from '../../components/Tab/Tab';
 import Badge from '../../components/Badge/Badge';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
+import Search from '../../components/Search/Search';
 
 const Home = () => {
   return (
     <SafeAreaView style={[globalStyles.backgroundWhite, globalStyles.flex]}>
       <View>
-        <Header title="Headerrr" />
-        {/*         <Button title="Donate" onPress={() => console.log('Donate')} />
-        <Button title="Donate" isDisabled={true} /> */}
-        <Tab title="Highlight" />
-        <Tab title="Highlight" isInactive={true} />
-        <Badge title="Environment" />
+        <Search
+          onSearch={value => {
+            console.log(value);
+          }}
+        />
       </View>
     </SafeAreaView>
   );

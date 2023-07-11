@@ -23,8 +23,6 @@ const Home = () => {
   const [isCategoryLoading, setIsCategoryLoading] = useState(false);
   const [donationItems, setDonationItems] = useState([]);
 
-  console.log('donationItems', donationItems);
-
   useEffect(() => {
     const items = donations.items.filter(item =>
       item.categoryIds.includes(categories.selectedCategoryId),
@@ -122,25 +120,31 @@ const Home = () => {
         </View>
         {donationItems.length > 0 && (
           <View style={style.donationItemsContainer}>
-            {donationItems.map(value => (
-              <View key={value.donationItemId} style={style.singleDonationItem}>
-                <SingleDonationItem
-                  onPress={selectedDonationId => {
-                    disptach(updateSelectedDonationId(selectedDonationId));
-                    navigation.navigate(Routes.SingleDonationItem as String);
-                  }}
-                  donationItemId={value.donationItemId}
-                  uri={value.image}
-                  donationTitle={value.name}
-                  badgeTitle={
-                    categories.categories.filter(
-                      val => val.categoryId === categories.selectedCategoryId,
-                    )[0].name
-                  }
-                  price={parseFloat(value.price)}
-                />
-              </View>
-            ))}
+            {donationItems.map(value => {
+              const categoryInformation = categories.categories.find(
+                val => val.categoryId === categories.selectedCategoryId,
+              );
+
+              return (
+                <View
+                  key={value.donationItemId}
+                  style={style.singleDonationItem}>
+                  <SingleDonationItem
+                    onPress={selectedDonationId => {
+                      disptach(updateSelectedDonationId(selectedDonationId));
+                      navigation.navigate(Routes.SingleDonationItem as String, {
+                        categoryInformation,
+                      });
+                    }}
+                    donationItemId={value.donationItemId}
+                    uri={value.image}
+                    donationTitle={value.name}
+                    badgeTitle={categoryInformation.name}
+                    price={parseFloat(value.price)}
+                  />
+                </View>
+              );
+            })}
           </View>
         )}
       </ScrollView>

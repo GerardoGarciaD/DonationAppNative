@@ -1,24 +1,23 @@
 import React from 'react';
-import {View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import globalStyles from '../../assets/styles/globalStyle';
 import Header from '../../components/Header/Header';
-// import Button from '../../components/Button/Button';
-import Tab from '../../components/Tab/Tab';
-import Badge from '../../components/Badge/Badge';
-import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
-import Search from '../../components/Search/Search';
+import {useDispatch, useSelector} from 'react-redux';
+import {Pressable, Text} from 'react-native';
+import {updateFirstName} from '../../redux/reducers/User';
 
 const Home = () => {
+  const user = useSelector(state => state.user);
+  const dispatch = useDispatch();
+  console.log(user);
   return (
     <SafeAreaView style={[globalStyles.backgroundWhite, globalStyles.flex]}>
-      <View>
-        <Search
-          onSearch={value => {
-            console.log(value);
-          }}
-        />
-      </View>
+      <Header title={`${user.firstName} ${user.lastName}`} />
+
+      <Pressable
+        onPress={() => dispatch(updateFirstName({firstName: 'Pedro'}))}>
+        <Text>Cambiame el nombre</Text>
+      </Pressable>
     </SafeAreaView>
   );
 };

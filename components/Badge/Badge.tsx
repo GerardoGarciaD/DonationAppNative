@@ -1,5 +1,5 @@
 import React, {FC, useRef, useState} from 'react';
-import {Pressable, Text, View} from 'react-native';
+import {Text, View} from 'react-native';
 import style from './style';
 import {horizontalScale} from '../../assets/styles/scaling';
 

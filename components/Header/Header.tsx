@@ -6,9 +6,15 @@ type Props = {
   title: string | number;
   type?: 'h1' | 'h2' | 'h3';
   color?: string;
+  numberOfLines?: number | null;
 };
 
-const Header: FC<Props> = ({title = '', type = 'h1', color = '#000'}) => {
+const Header: FC<Props> = ({
+  title = '',
+  type = 'h1',
+  color = '#000',
+  numberOfLines = null,
+}) => {
   const styleToApply = () => {
     switch (type) {
       case 'h1':
@@ -22,7 +28,13 @@ const Header: FC<Props> = ({title = '', type = 'h1', color = '#000'}) => {
     }
   };
 
-  return <Text style={[styleToApply(), {color: color}]}>{title}</Text>;
+  return (
+    <Text
+      style={[styleToApply(), {color: color}]}
+      numberOfLines={numberOfLines}>
+      {title}
+    </Text>
+  );
 };
 
 export default Header;

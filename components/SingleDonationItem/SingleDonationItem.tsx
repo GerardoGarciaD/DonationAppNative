@@ -35,7 +35,12 @@ const SingleDonationItem: FC<Props> = ({
         </View>
 
         <View style={style.donationInformation}>
-          <Header title={donationTitle} type="h3" color="#0A043C" />
+          <Header
+            title={donationTitle}
+            type="h3"
+            color="#0A043C"
+            numberOfLines={1}
+          />
           <Header title={`$ ${price.toFixed(2)}`} type="h3" color="#156CF7" />
         </View>
       </View>

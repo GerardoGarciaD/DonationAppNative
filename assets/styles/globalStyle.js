@@ -1,3 +1,5 @@
+import {verticalScale} from './scaling';
+
 const {StyleSheet} = require('react-native');
 
 const globalStyles = StyleSheet.create({
@@ -9,6 +11,9 @@ const globalStyles = StyleSheet.create({
   },
   flex: {
     flex: 1,
+  },
+  margingBottom: {
+    marginBottom: verticalScale(24),
   },
 });
 

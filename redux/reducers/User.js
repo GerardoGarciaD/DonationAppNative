@@ -16,8 +16,11 @@ export const User = createSlice({
     resetToInitialState: () => {
       return initialState;
     },
+    updateToken: (state, action) => {
+      state.token = action.payload;
+    },
   },
 });
 
-export const {login, resetToInitialState} = User.actions;
+export const {login, resetToInitialState, updateToken} = User.actions;
 export default User.reducer;

@@ -15,6 +15,8 @@ const Registration = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigation = useNavigation();
+  const [success, setSuccess] = useState('');
+  const [error, seterror] = useState('');
 
   return (
     <SafeAreaView style={[globalStyles.backgroundWhite, globalStyles.flex]}>
@@ -46,15 +48,35 @@ const Registration = () => {
           <Input
             label="Password"
             onChangeText={value => setPassword(value)}
-            keyboardType="email-address"
             secureTextEntry
           />
         </View>
 
+        {error.length > 0 && <Text style={style.error}>{error}</Text>}
+        {success.length > 0 && <Text style={style.success}>{success}</Text>}
+
         <View style={globalStyles.margingBottom}>
           <Button
+            isDisabled={
+              name.length <= 2 || email.length <= 2 || password.length < 8
+            }
             title="Register"
-            onPress={async () => await createUser(name, email, password)}
+            onPress={async () => {
+              let user = await createUser(name, email, password);
+              if (user.error) {
+                seterror(user.error);
+                setTimeout(() => {
+                  seterror('');
+                }, 3000);
+              } else {
+                seterror('');
+                setSuccess('You have successfully registered');
+                setTimeout(() => {
+                  navigation.goBack();
+                  setSuccess('');
+                }, 3000);
+              }
+            }}
           />
         </View>
         <Pressable

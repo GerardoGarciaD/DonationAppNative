@@ -8,6 +8,7 @@ import Button from '../../components/Button/Button';
 import {useNavigation} from '@react-navigation/native';
 import {Routes} from '../../Navigation/Routes';
 import BackButton from '../../components/BackButton/BackButton';
+import {createUser} from '../../api/user';
 
 const Registration = () => {
   const [name, setName] = useState('');
@@ -51,7 +52,10 @@ const Registration = () => {
         </View>
 
         <View style={globalStyles.margingBottom}>
-          <Button title="Register" />
+          <Button
+            title="Register"
+            onPress={async () => await createUser(name, email, password)}
+          />
         </View>
         <Pressable
           style={style.registrationButton}

@@ -8,12 +8,15 @@ import Button from '../../components/Button/Button';
 import {useNavigation} from '@react-navigation/native';
 import {Routes} from '../../Navigation/Routes';
 import {loginUser} from '../../api/user';
+import {useDispatch} from 'react-redux';
+import {login, resetToInitialState} from '../../redux/reducers/User';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigation = useNavigation();
+  const dispatch = useDispatch();
 
   return (
     <SafeAreaView style={[globalStyles.backgroundWhite, globalStyles.flex]}>
@@ -52,6 +55,7 @@ const Login = () => {
                 }, 3000);
               } else {
                 setError('');
+                dispatch(login(user.data));
                 navigation.navigate(Routes.Home);
               }
             }}

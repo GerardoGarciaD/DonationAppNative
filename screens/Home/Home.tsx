@@ -14,6 +14,7 @@ import {useNavigation} from '@react-navigation/native';
 import {Routes} from '../../Navigation/Routes';
 const Home = () => {
   const user = useSelector(state => state.user);
+
   const categories = useSelector(state => state.categories);
   const donations = useSelector(state => state.donations);
   const navigation = useNavigation();
@@ -59,7 +60,7 @@ const Home = () => {
           <View>
             <Text style={style.headerIntroText}>Hello, </Text>
             <View style={style.userName}>
-              <Header title={`${user.firstName} ${user.lastName}. 👋`} />
+              <Header title={`${user.displayName} 👋`} />
             </View>
           </View>
           <Image

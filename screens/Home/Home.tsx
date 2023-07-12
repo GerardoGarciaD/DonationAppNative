@@ -12,6 +12,8 @@ import SingleDonationItem from '../../components/SingleDonationItem/SingleDonati
 import {updateSelectedDonationId} from '../../redux/reducers/Donations';
 import {useNavigation} from '@react-navigation/native';
 import {Routes} from '../../Navigation/Routes';
+import {resetToInitialState} from '../../redux/reducers/User';
+import {logOut} from '../../api/user';
 const Home = () => {
   const user = useSelector(state => state.user);
 
@@ -63,11 +65,20 @@ const Home = () => {
               <Header title={`${user.displayName} 👋`} />
             </View>
           </View>
-          <Image
-            source={{uri: user.profileImage}}
-            style={style.profileImage}
-            resizeMode="contain"
-          />
+          <View>
+            <Image
+              source={{uri: user.profileImage}}
+              style={style.profileImage}
+              resizeMode="contain"
+            />
+            <Pressable
+              onPress={async () => {
+                disptach(resetToInitialState());
+                await logOut();
+              }}>
+              <Header title={'Logout'} type="h3" color="#156CF7"></Header>
+            </Pressable>
+          </View>
         </View>
         <View style={style.searchBox}>
           <Search onSearch={() => {}} />

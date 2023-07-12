@@ -7,10 +7,12 @@ import Header from '../../components/Header/Header';
 import Button from '../../components/Button/Button';
 import {useNavigation} from '@react-navigation/native';
 import {Routes} from '../../Navigation/Routes';
+import {loginUser} from '../../api/user';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const navigation = useNavigation();
 
   return (
@@ -38,8 +40,24 @@ const Login = () => {
           />
         </View>
 
+        {error.length > 0 && <Text style={style.error}>{error}</Text>}
         <View style={globalStyles.margingBottom}>
-          <Button title="Login" />
+          <Button
+            onPress={async () => {
+              let user = await loginUser(email, password);
+              if (!user.status) {
+                setError(user.error);
+                setTimeout(() => {
+                  setError('');
+                }, 3000);
+              } else {
+                setError('');
+                navigation.navigate(Routes.Home);
+              }
+            }}
+            isDisabled={email.length < 5 || password.length < 8}
+            title="Login"
+          />
         </View>
         <Pressable
           style={style.registrationButton}

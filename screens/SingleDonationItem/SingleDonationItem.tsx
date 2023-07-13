@@ -8,6 +8,7 @@ import {useNavigation} from '@react-navigation/native';
 import Badge from '../../components/Badge/Badge';
 import Header from '../../components/Header/Header';
 import Button from '../../components/Button/Button';
+import {Routes} from '../../Navigation/Routes';
 
 const SingleDonationItem = ({route}) => {
   const donationInformation = useSelector(
@@ -38,7 +39,10 @@ const SingleDonationItem = ({route}) => {
         <Text style={style.description}>{donationInformation.description}</Text>
       </ScrollView>
       <View style={style.button}>
-        <Button title="Donate" />
+        <Button
+          onPress={() => navigation.navigate(Routes.Payment)}
+          title="Donate"
+        />
       </View>
     </SafeAreaView>
   );

@@ -11,6 +11,10 @@ const style = StyleSheet.create({
   donationButton: {
     marginHorizontal: horizontalScale(24),
   },
+  cardForm: {
+    height: verticalScale(150),
+    marginTop: verticalScale(12),
+  },
 });
 
 export default style;

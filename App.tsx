@@ -11,7 +11,7 @@ const App = () => {
   const appState = useRef(AppState.currentState);
 
   useEffect(() => {
-    const subsciption = AppState.addEventListener('change', nextAppState => {
+    const subscription = AppState.addEventListener('change', nextAppState => {
       if (
         appState.current.match(/inactive|background/) &&
         nextAppState === 'active'

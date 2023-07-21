@@ -9,7 +9,7 @@ import {useNavigation} from '@react-navigation/native';
 import {Routes} from '../../Navigation/Routes';
 import {loginUser} from '../../api/user';
 import {useDispatch} from 'react-redux';
-import {login, resetToInitialState} from '../../redux/reducers/User';
+import {login} from '../../redux/reducers/User';
 
 const Login = () => {
   const [email, setEmail] = useState('');

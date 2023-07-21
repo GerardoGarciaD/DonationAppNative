@@ -1,6 +1,5 @@
-import React, {useState} from 'react';
+/* import React, {useState} from 'react';
 import {Alert, SafeAreaView, ScrollView, Text, View} from 'react-native';
-import globalStyles from '../../assets/styles/globalStyle';
 import Header from '../../components/Header/Header';
 import style from './style';
 import {useSelector} from 'react-redux';
@@ -59,8 +58,8 @@ const Payments = () => {
     }
   };
   return (
-    <SafeAreaView style={[globalStyles.backgroundWhite, globalStyles.flex]}>
-      <ScrollView contentContainerStyle={style.paymentContainer}>
+    <SafeAreaView className="bg-white flex-1">
+      <ScrollView className="mx-5">
         <Header title="Making Donation" />
         <Text style={style.donationAmountDescription}>
           You are about to donate {donationInformation.price}
@@ -85,3 +84,4 @@ const Payments = () => {
 };
 
 export default Payments;
+ */
